@@ -1,4 +1,4 @@
-package br.com.bandtec.AC3;
+package br.com.bandtec.AC3.interator;
 
 public class PilhaObj <T> {
 

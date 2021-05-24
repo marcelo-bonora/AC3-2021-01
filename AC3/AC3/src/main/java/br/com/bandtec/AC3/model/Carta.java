@@ -1,26 +1,43 @@
-package br.com.bandtec.AC3.Model;
+package br.com.bandtec.AC3.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Carta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cod;
+    private Integer id;
+
+
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String tipo;
+
+    @PositiveOrZero
     private Double valor;
 
-    public Integer getCod() {
-        return cod;
+    @ManyToOne
+    private Deck deck;
+
+    public Deck getDeck() {
+        return deck;
     }
 
-    public void setCod(Integer cod) {
-        this.cod = cod;
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -50,7 +67,7 @@ public class Carta {
     @Override
     public String toString() {
         return "Carta{" +
-                "cod=" + cod +
+                "cod=" + id +
                 ", nome='" + nome + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", valor=" + valor +
