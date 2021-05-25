@@ -9,17 +9,17 @@ public class Carta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idCarta;
 
 
     @NotBlank
-    private String nome;
+    private String nomeCarta;
 
     @NotBlank
     private String tipo;
 
     @PositiveOrZero
-    private Double valor;
+    private Double valorCarta;
 
     @ManyToOne
     private Deck deck;
@@ -32,20 +32,20 @@ public class Carta {
         this.deck = deck;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCarta() {
+        return idCarta;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCarta(Integer id) {
+        this.idCarta = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeCarta() {
+        return nomeCarta;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeCarta(String nome) {
+        this.nomeCarta = nome;
     }
 
     public String getTipo() {
@@ -56,21 +56,21 @@ public class Carta {
         this.tipo = tipo;
     }
 
-    public Double getValor() {
-        return valor;
+    public Double getValorCarta() {
+        return valorCarta;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setValorCarta(Double valor) {
+        this.valorCarta = valor;
     }
 
     @Override
     public String toString() {
         return "Carta{" +
-                "cod=" + id +
-                ", nome='" + nome + '\'' +
+                "cod=" + idCarta +
+                ", nome='" + nomeCarta + '\'' +
                 ", tipo='" + tipo + '\'' +
-                ", valor=" + valor +
+                ", valor=" + valorCarta +
                 '}';
     }
 }
