@@ -2,6 +2,7 @@ package br.com.bandtec.AC3.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
 @Entity
@@ -18,6 +19,7 @@ public class Carta {
     @NotBlank
     private String tipo;
 
+    @NotNull
     @PositiveOrZero
     private Double valorCarta;
 

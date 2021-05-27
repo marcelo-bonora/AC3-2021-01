@@ -21,23 +21,30 @@ public class CartaController {
     @Autowired
     private CartaRepository repository;
 
-    PilhaObj<Carta> pilhaCartaDeletada = new PilhaObj(5);
+    private static PilhaObj<Carta> pilhaCartaDeletada = new PilhaObj(5);
 
-    FilaObj<CartaAdapter> filaCartaRequisicao = new FilaObj(5);
+    private static FilaObj<CartaAdapter> filaCartaRequisicao = new FilaObj(5);
 
-    ListaObj<CartaAdapter> listaCartaTratada = new ListaObj(5);
+    private static ListaObj<CartaAdapter> listaCartaTratada = new ListaObj(5);
+
+    public static PilhaObj<Carta> getPilhaCartaDeletada() {
+        return pilhaCartaDeletada;
+    }
+
+    public static FilaObj<CartaAdapter> getFilaCartaRequisicao() {
+        return filaCartaRequisicao;
+    }
+
+    public static ListaObj<CartaAdapter> getListaCartaTratada() {
+        return listaCartaTratada;
+    }
 
     @GetMapping
-    public ResponseEntity getCartas(){
+    public ResponseEntity<List<Carta>> getCartas(){
         List<Carta> cartas = repository.findAll();
-
-        if(cartas.isEmpty()){
-            return ResponseEntity.status(204).build();
-
-        } else {
-            return ResponseEntity.status(200).body(repository.findAll());
-
-        }
+        return cartas.isEmpty()
+            ? ResponseEntity.status(204).build()
+            : ResponseEntity.status(200).body(cartas);
     }
 
     @PostMapping
@@ -64,10 +71,10 @@ public class CartaController {
         if(repository.existsById(id)){
             carta.setIdCarta(id);
             repository.save(carta);
-            return ResponseEntity.status(201).build();
+            return ResponseEntity.status(200).build();
 
         } else {
-            return ResponseEntity.status(400).build();
+            return ResponseEntity.status(404).build();
         }
     }
 
@@ -86,27 +93,13 @@ public class CartaController {
 
 //    ----------- Métodos de Requisição Assíncrona ----------
 
-    @GetMapping("/requisicao")
-    public ResponseEntity getRequisicao(@RequestBody @Valid Carta carta){
-        Integer cod = ThreadLocalRandom.current().nextInt(1, 100);
+    @PostMapping("/requisicao")
+    public ResponseEntity postRequisicao(@RequestBody @Valid Carta carta){
+        Integer cod = ThreadLocalRandom.current().nextInt(1, 1000);
         CartaAdapter cartaAdapter = new CartaAdapter(cod, carta);
 
         filaCartaRequisicao.insert(cartaAdapter);
         return ResponseEntity.status(200).body(cod);
-    }
-
-    @PostMapping("/tratamento")
-    public ResponseEntity tratamento(){
-
-        if(!filaCartaRequisicao.isEmpty()){
-            listaCartaTratada.adiciona(filaCartaRequisicao.peek());
-            postCarta(filaCartaRequisicao.poll().getCarta());
-            return ResponseEntity.status(201).build();
-
-        } else {
-            return ResponseEntity.status(204).body("Sem tratamentos pendentes");
-        }
-
     }
 
     @GetMapping("/tratamento/{cod}")
@@ -114,11 +107,10 @@ public class CartaController {
 
         for(int i = 0; i < listaCartaTratada.getTamanho(); i++){
             if(listaCartaTratada.getElemento(i).getId().equals(cod)){
-                listaCartaTratada.removePeloIndice(i);
-                return ResponseEntity.status(200).build();
+                return ResponseEntity.status(200).body(listaCartaTratada.removePeloIndice(i));
             }
         }
-        return ResponseEntity.status(204).build();
+        return ResponseEntity.status(404).build();
     }
 
 }
