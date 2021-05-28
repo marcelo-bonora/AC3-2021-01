@@ -1,12 +1,8 @@
 package br.com.bandtec.AC3.controller;
 
 import br.com.bandtec.AC3.adapter.DeckAdapter;
-import br.com.bandtec.AC3.interator.FilaObj;
-import br.com.bandtec.AC3.interator.ListaObj;
-import br.com.bandtec.AC3.interator.PilhaObj;
-import br.com.bandtec.AC3.model.Carta;
+import br.com.bandtec.AC3.iterator.PilhaObj;
 import br.com.bandtec.AC3.model.Deck;
-import br.com.bandtec.AC3.repository.CartaRepository;
 import br.com.bandtec.AC3.repository.DeckRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

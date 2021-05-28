@@ -1,6 +1,6 @@
 package br.com.bandtec.AC3.document;
 
-import br.com.bandtec.AC3.interator.ListaObj;
+import br.com.bandtec.AC3.iterator.ListaObj;
 import br.com.bandtec.AC3.model.Deck;
 
 import java.io.*;
@@ -63,7 +63,7 @@ public class Arquivo {
 
     public void leArquivo(String nomeArq) {
         BufferedReader entrada = null;
-        String registro = nomeArq;
+        String registro;
         String tipoRegistro;
         String nomeDeck;
         double valorDeck;

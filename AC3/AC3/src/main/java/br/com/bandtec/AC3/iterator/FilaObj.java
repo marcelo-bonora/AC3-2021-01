@@ -1,4 +1,4 @@
-package br.com.bandtec.AC3.interator;
+package br.com.bandtec.AC3.iterator;
 
 // Representa uma fila de objetos de tipo genérico
 public class FilaObj <T> {

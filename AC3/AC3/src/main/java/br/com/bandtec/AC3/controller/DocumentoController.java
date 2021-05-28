@@ -1,7 +1,7 @@
 package br.com.bandtec.AC3.controller;
 
 import br.com.bandtec.AC3.document.Arquivo;
-import br.com.bandtec.AC3.interator.ListaObj;
+import br.com.bandtec.AC3.iterator.ListaObj;
 import br.com.bandtec.AC3.model.Deck;
 import br.com.bandtec.AC3.repository.DeckRepository;
 import org.springframework.beans.factory.annotation.Autowired;

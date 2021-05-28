@@ -1,7 +1,7 @@
 package br.com.bandtec.AC3.controller;
 
 import br.com.bandtec.AC3.adapter.CartaAdapter;
-import br.com.bandtec.AC3.interator.PilhaObj;
+import br.com.bandtec.AC3.iterator.PilhaObj;
 import br.com.bandtec.AC3.model.Carta;
 import br.com.bandtec.AC3.model.Deck;
 import br.com.bandtec.AC3.repository.CartaRepository;

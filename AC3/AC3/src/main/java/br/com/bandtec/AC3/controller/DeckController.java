@@ -1,12 +1,11 @@
 package br.com.bandtec.AC3.controller;
 
 import br.com.bandtec.AC3.adapter.DeckAdapter;
-import br.com.bandtec.AC3.interator.FilaObj;
-import br.com.bandtec.AC3.interator.ListaObj;
+import br.com.bandtec.AC3.iterator.FilaObj;
+import br.com.bandtec.AC3.iterator.ListaObj;
 import br.com.bandtec.AC3.model.Deck;
-import br.com.bandtec.AC3.interator.PilhaObj;
+import br.com.bandtec.AC3.iterator.PilhaObj;
 import br.com.bandtec.AC3.repository.DeckRepository;
-import br.com.bandtec.AC3.scheduling.SchedulingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
