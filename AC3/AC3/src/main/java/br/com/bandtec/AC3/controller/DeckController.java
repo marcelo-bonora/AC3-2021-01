@@ -99,17 +99,21 @@ public class DeckController {
         Integer cod = ThreadLocalRandom.current().nextInt(1, 1000);
         DeckAdapter deckAdapter = new DeckAdapter(cod, deck);
 
-        getFilaDeckRequisicao().insert(deckAdapter);
+        filaDeckRequisicao.insert(deckAdapter);
         return ResponseEntity.status(200).body(cod);
     }
-
 
     @GetMapping("/tratamento/{cod}")
     public ResponseEntity consultarTratamento(@PathVariable int cod){
 
-        for(int i = 0; i < getListaDeckTratada().getTamanho(); i++){
-            if(getListaDeckTratada().getElemento(i).getId().equals(cod)){
-                return ResponseEntity.status(200).body(listaDeckTratada.removePeloIndice(i));
+        for(int i = 0; i < listaDeckTratada.getTamanho(); i++){
+            if(listaDeckTratada.getElemento(i).getId().equals(cod)){
+                DeckAdapter deckTratado = new DeckAdapter(
+                        listaDeckTratada.getElemento(i).getId(),
+                        listaDeckTratada.getElemento(i).getDeck()
+                );
+                listaDeckTratada.removePeloIndice(i);
+                return ResponseEntity.status(200).body(deckTratado);
             }
         }
         return ResponseEntity.status(404).build();

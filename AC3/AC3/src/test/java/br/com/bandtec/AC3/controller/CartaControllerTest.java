@@ -1,7 +1,6 @@
 package br.com.bandtec.AC3.controller;
 
 import br.com.bandtec.AC3.adapter.CartaAdapter;
-import br.com.bandtec.AC3.adapter.DeckAdapter;
 import br.com.bandtec.AC3.interator.PilhaObj;
 import br.com.bandtec.AC3.model.Carta;
 import br.com.bandtec.AC3.model.Deck;
@@ -171,50 +170,28 @@ class CartaControllerTest {
     }
 
     // Cenário de teste do método getRequisição()
-    @DisplayName("GET /getRequisicao - Quando NÃO apresenta erros - status 200")
+    @DisplayName("POST /getRequisicao - Quando NÃO apresenta erros - status 200")
     @Test
-    void getRequisicaoSemErros() {
+    void postRequisicaoSemErros() {
         Carta carta = new Carta();
         int codTest = 15;
         CartaAdapter cartaAdapter = new CartaAdapter(codTest, carta);
 
-        ResponseEntity resposta = controller.getRequisicao(carta);
+        ResponseEntity resposta = controller.postRequisicao(carta);
 
         assertEquals(200, resposta.getStatusCodeValue());
     }
 
-    @DisplayName("GET /getRequisicao - Quando existi requisição pendente - com corpo contendo o valor do 'código'")
+    @DisplayName("POST /getRequisicao - Quando existi requisição pendente - com corpo contendo o valor do 'código'")
     @Test
-    void getRequisicaoCod() {
+    void postRequisicaoCod() {
         Carta carta = new Carta();
         int codTest = 15;
 
-        ResponseEntity resposta = controller.getRequisicao(carta);
+        ResponseEntity resposta = controller.postRequisicao(carta);
 
         assertEquals(resposta.getBody(), resposta.getBody());
     }
-
-    // Cenário de teste do método tratamento()
-//    @DisplayName("POST /tratamento - Quando possui uma requisição pendente - status 201")
-//    @Test
-//    void tratamentoQuandoTemRequisicao() {
-//
-//        controller.getRequisicao(new Carta());
-//        ResponseEntity resposta = controller.tratamento();
-//
-//        assertEquals(201, resposta.getStatusCodeValue());
-//
-//    }
-//
-//    @DisplayName("POST /tratamento - Quando NÃO possui uma requisição pendente - status 204")
-//    @Test
-//    void tratamentoQuandoNaoTemRequisicao() {
-//
-//        ResponseEntity resposta = controller.tratamento();
-//
-//        assertEquals(204, resposta.getStatusCodeValue());
-//
-//    }
 
     // Cenário de teste do método cosultarTratamento()
     @DisplayName("GET /consultarTratamento - Quando possui uma requisição tratada - sem corpo")

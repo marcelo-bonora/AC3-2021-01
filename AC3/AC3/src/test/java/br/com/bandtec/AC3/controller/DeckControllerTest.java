@@ -173,50 +173,28 @@ class DeckControllerTest {
     }
 
     // Cenário de teste do método getRequisição()
-    @DisplayName("GET /getRequisicao - Quando NÃO apresenta erros - status 200")
+    @DisplayName("POST /getRequisicao - Quando NÃO apresenta erros - status 200")
     @Test
-    void getRequisicaoSemErros() {
+    void postRequisicaoSemErros() {
         Deck deck = new Deck();
         int codTest = 15;
         DeckAdapter deckAdapter = new DeckAdapter(codTest, deck);
 
-        ResponseEntity resposta = controller.getRequisicao(deck);
+        ResponseEntity resposta = controller.postRequisicao(deck);
 
         assertEquals(200, resposta.getStatusCodeValue());
     }
 
-    @DisplayName("GET /getRequisicao - Quando existi requisição pendente - com corpo contendo o valor do 'código'")
+    @DisplayName("POST /getRequisicao - Quando existi requisição pendente - com corpo contendo o valor do 'código'")
     @Test
-    void getRequisicaoCod() {
+    void postRequisicaoCod() {
         Deck deck = new Deck();
         int codTest = 15;
         DeckAdapter deckAdapter = new DeckAdapter(codTest, deck);
-        ResponseEntity resposta = controller.getRequisicao(deck);
+        ResponseEntity resposta = controller.postRequisicao(deck);
 
         assertEquals(resposta.getBody(), resposta.getBody());
     }
-
-    // Cenário de teste do método tratamento()
-//    @DisplayName("POST /tratamento - Quando possui uma requisição pendente - status 201")
-//    @Test
-//    void tratamentoQuandoTemRequisicao() {
-//
-//        controller.getRequisicao(new Deck());
-//        ResponseEntity resposta = controller.tratamento();
-//
-//        assertEquals(201, resposta.getStatusCodeValue());
-//
-//    }
-
-//    @DisplayName("POST /tratamento - Quando NÃO possui uma requisição pendente - status 204")
-//    @Test
-//    void tratamentoQuandoNaoTemRequisicao() {
-//
-//        ResponseEntity resposta = controller.tratamento();
-//
-//        assertEquals(204, resposta.getStatusCodeValue());
-//
-//    }
 
     // Cenário de teste do método cosultarTratamento()
     @DisplayName("GET /consultarTratamento - Quando possui uma requisição tratada - sem corpo")

@@ -107,7 +107,12 @@ public class CartaController {
 
         for(int i = 0; i < listaCartaTratada.getTamanho(); i++){
             if(listaCartaTratada.getElemento(i).getId().equals(cod)){
-                return ResponseEntity.status(200).body(listaCartaTratada.removePeloIndice(i));
+                CartaAdapter cartaTratada = new CartaAdapter(
+                        listaCartaTratada.getElemento(i).getId(),
+                        listaCartaTratada.getElemento(i).getCarta()
+                );
+                listaCartaTratada.removePeloIndice(i);
+                return ResponseEntity.status(200).body(cartaTratada);
             }
         }
         return ResponseEntity.status(404).build();
